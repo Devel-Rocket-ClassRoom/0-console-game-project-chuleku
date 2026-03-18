@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Framework
+namespace Framework.Horse_Racing
 {
     internal class Horse
     {

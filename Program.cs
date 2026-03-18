@@ -1,1 +1,1 @@
-return;
+new HorseRacing().Run();
