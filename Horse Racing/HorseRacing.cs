@@ -6,8 +6,8 @@ using System.Text;
 public class HorseRacing : GameApp
 {
     private readonly SceneManager<Scene> _scenes = new SceneManager<Scene>();
-    public HorseRacing() : base(100, 40) { }
-    public HorseRacing(int width, int height) : base(100, 40)
+    public HorseRacing() : base(60, 40) { }
+    public HorseRacing(int width, int height) : base(60, 40)
     {
     }
 
@@ -18,7 +18,7 @@ public class HorseRacing : GameApp
 
     protected override void Initialize()
     {
-        
+        ChangeToTile();
     }
 
     protected override void Update(float deltaTime)

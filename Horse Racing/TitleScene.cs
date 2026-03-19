@@ -14,8 +14,9 @@ public class TitleScene : Scene
     public override void Draw(ScreenBuffer buffer)
     {
         buffer.WriteTextCentered(10,"=== 경마 게임 ===",ConsoleColor.White);
-        buffer.WriteTextCentered(14, "배팅 할 말을 선택 해주세요.", ConsoleColor.White);
-        buffer.WriteTextCentered(17, "Press Number Key: 1, 2, 3 ", ConsoleColor.White);
+        buffer.WriteTextCentered(14, "시작하려면 Enter키를 눌러주세요.", ConsoleColor.White);
+        buffer.WriteTextCentered(20, "Press Enter to Start", ConsoleColor.White);
+      
     }
 
     public override void Load()
@@ -30,15 +31,7 @@ public class TitleScene : Scene
 
     public override void Update(float deltaTime)
     {
-        if (Input.IsKeyDown(ConsoleKey.NumPad1))
-        {
-            StartRequested?.Invoke();
-        }
-        else if(Input.IsKeyDown(ConsoleKey.NumPad2))
-        {
-            StartRequested?.Invoke();
-        }
-        else if(Input.IsKeyDown (ConsoleKey.NumPad3))
+        if (Input.IsKeyDown(ConsoleKey.Enter))
         {
             StartRequested?.Invoke();
         }

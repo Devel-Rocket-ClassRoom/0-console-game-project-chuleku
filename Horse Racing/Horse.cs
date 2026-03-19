@@ -1,10 +1,21 @@
-﻿using System;
+﻿using Framework.Engine;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Framework.Horse_Racing
+public class Horse : GameObject
 {
-    internal class Horse
+    public Horse(Scene scene) : base(scene)
     {
+    }
+
+    public override void Draw(ScreenBuffer buffer)
+    {
+        
+    }
+
+    public override void Update(float deltaTime)
+    {
+        
     }
 }
