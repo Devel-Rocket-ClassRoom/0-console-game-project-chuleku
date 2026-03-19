@@ -6,8 +6,8 @@ using System.Text;
 public class HorseRacing : GameApp
 {
     private readonly SceneManager<Scene> _scenes = new SceneManager<Scene>();
-    public HorseRacing() : base(60, 40) { }
-    public HorseRacing(int width, int height) : base(60, 40)
+    public HorseRacing() : base(100, 30) { }
+    public HorseRacing(int width, int height) : base(100, 30)
     {
     }
 
@@ -33,11 +33,13 @@ public class HorseRacing : GameApp
     private void ChangeToTile()
     {
         var title = new TitleScene();
-        title.StartRequested += ChangeToPlay;
+        title.StartRequested += ChangeToRacing;
         _scenes.ChangeScene(title);
     }
-    private void ChangeToPlay()
+    private void ChangeToRacing()
     {
-
+        var Racing = new RacingScene();
+        Racing.PlayAgainRequested += ChangeToTile;
+        _scenes.ChangeScene(Racing);
     }
 }

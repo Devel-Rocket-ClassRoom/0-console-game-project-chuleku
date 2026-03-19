@@ -5,11 +5,10 @@ using System.Text;
 
 public class Hurdle : GameObject
 {
-    private int _position;
+    private (int x,int y) _position;
     private const float K_MoveHurdle = 0.20f;
     private readonly LinkedList<(int x, int y)> _fall = new LinkedList<(int x, int y)>();
-    private (int X, int Y) _direction;
-    private (int X, int Y) _nextDirection;
+
     private float _moveTimer;
     public Hurdle(Scene scene) : base(scene)
     {
@@ -18,13 +17,9 @@ public class Hurdle : GameObject
 
     public override void Draw(ScreenBuffer buffer)
     {
-        var fallhurdle = _fall.First;
-        while (fallhurdle != null)
-        {
-            buffer.SetCell(fallhurdle.Value.x,fallhurdle.Value.y,'ㅡ',ConsoleColor.Red);
-        }
+        buffer.SetCell(_position.x, _position.y, '*', ConsoleColor.Red);
     }
-
+    
     public override void Update(float deltaTime)
     {
         

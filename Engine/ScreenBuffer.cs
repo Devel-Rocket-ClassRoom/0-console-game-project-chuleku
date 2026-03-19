@@ -82,6 +82,7 @@ namespace Framework.Engine
             }
         }
 
+
         public void WriteText(int x, int y, string text, ConsoleColor color = ConsoleColor.Gray, ConsoleColor bgColor = ConsoleColor.Black)
         {
             for (int i = 0; i < text.Length; i++)

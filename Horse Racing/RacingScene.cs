@@ -3,25 +3,34 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-public class RacingScenc : Scene
+public class RacingScene : Scene
 {
     private Track track;
     private Hurdle hurdle;
+    private Horse horse;
+    private Horse horse1;
+    private Horse horse2;
     public event GameAction PlayAgainRequested;
     private bool isGameOver;
-    public RacingScenc()
+    public RacingScene()
     {
     }
 
     public override void Draw(ScreenBuffer buffer)
     {
-        
+        DrawGameObjects(buffer);
     }
 
     public override void Load()
     {
+        horse = new Horse(this,18,3);
+        horse1 = new Horse(this,18,5);
+        horse2 = new Horse(this,18,7);
         track = new Track(this);
         hurdle = new Hurdle(this);
+        AddGameObject(horse);
+        AddGameObject(horse1);
+        AddGameObject(horse2);
         AddGameObject(track);
         AddGameObject(hurdle);
         isGameOver = false;
