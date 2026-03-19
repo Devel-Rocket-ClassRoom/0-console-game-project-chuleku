@@ -92,7 +92,11 @@ namespace Framework.Engine
 
             return null;
         }
-
+        public IReadOnlyList<GameObject> GetGameObjects()
+        {
+            FlushPending();
+            return _gameObjects.AsReadOnly();
+        }
         private void FlushPending()
         {
             if (_pendingRemove.Count > 0)

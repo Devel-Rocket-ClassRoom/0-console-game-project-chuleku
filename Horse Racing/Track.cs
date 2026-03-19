@@ -10,9 +10,9 @@ public class Track : GameObject
     public const int Top = 2;
     public const int Right = 98;
     public const int Bottom = 27;
-    public const int secondLeft = 20;
-    public const int secondTop = 10;
-    public const int secondRight = 78;
+    public const int secondLeft = 31;
+    public const int secondTop = 11;
+    public const int secondRight = 68;
     public const int secondBottom = 18;
 
     public Track(Scene scene) : base(scene)

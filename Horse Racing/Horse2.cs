@@ -1,11 +1,9 @@
 ﻿using Framework.Engine;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using static System.Net.Mime.MediaTypeNames;
 
-public class Horse : GameObject
+public class Horse2 : GameObject
 {
     private const float K_MoveInterval = 0.50f;
     private (int X, int Y) _direction;
@@ -13,9 +11,9 @@ public class Horse : GameObject
     private float _moveTimer;
     private bool _IsMoving;
     private static readonly string Fallback = "♞";
-    public Horse(Scene scene,int StartX,int StartY) : base(scene)
+    public Horse2(Scene scene, int StartX, int StartY) : base(scene)
     {
-        Name = "Horse";
+        Name = "Horse2";
         _direction = (StartX, StartY);
         _nextDirection = (1, 0);
         _IsMoving = false;
@@ -24,19 +22,19 @@ public class Horse : GameObject
     public (int X, int Y) Position => _direction;
     public override void Draw(ScreenBuffer buffer)
     {
-        buffer.WriteText(_direction.X,_direction.Y, Fallback, ConsoleColor.Green, ConsoleColor.Black);
+        buffer.WriteText(_direction.X, _direction.Y, Fallback, ConsoleColor.Gray, ConsoleColor.Black);
     }
     public void MoveStep()
     {
-        
-        int Mx = _direction.X+_nextDirection.X;
-        int My = _direction.Y+_nextDirection.Y;
+
+        int Mx = _direction.X + _nextDirection.X;
+        int My = _direction.Y + _nextDirection.Y;
 
         Mx = Math.Clamp(Mx, Track.Left, Track.Right);
         My = Math.Clamp(My, Track.Top, Track.Bottom);
         var hurdle = Scene.FindGameObject("Hurdle") as Hurdle;
         var otherhorse1 = Scene.FindGameObject("Horse1") as Horse1;
-        var otherhorse2= Scene.FindGameObject("Horse2") as Horse2;
+        var otherhorse = Scene.FindGameObject("Horse") as Horse;
 
         if (hurdle != null && hurdle.IsAt(Mx, My))
         {
@@ -51,7 +49,7 @@ public class Horse : GameObject
                 if (hurdle.IsSqawn(c.x, c.y)) return false;
                 if (hurdle.IsAt(c.x, c.y)) return false;
                 return true;
-            }   
+            }
 
             if (IsValid(candUp))
             {
@@ -65,7 +63,6 @@ public class Horse : GameObject
             }
             return;
         }
-
         if (otherhorse1 != null && otherhorse1.IsOther(Mx, My))
         {
             int dx = _nextDirection.X;
@@ -78,7 +75,7 @@ public class Horse : GameObject
                 if (c.x < Track.Left || c.x > Track.Right || c.y < Track.Top || c.y > Track.Bottom) return false;
                 if (otherhorse1.IsOther(c.x, c.y)) return false;
                 return true;
-            }   
+            }
 
             if (IsValid(candUp))
             {
@@ -92,7 +89,7 @@ public class Horse : GameObject
             }
             return;
         }
-        if (otherhorse2 != null && otherhorse2.IsOther(Mx, My))
+        if (otherhorse != null && otherhorse.IsOther(Mx, My))
         {
             int dx = _nextDirection.X;
             int dy = _nextDirection.Y;
@@ -102,9 +99,9 @@ public class Horse : GameObject
             bool IsValid((int x, int y) c)
             {
                 if (c.x < Track.Left || c.x > Track.Right || c.y < Track.Top || c.y > Track.Bottom) return false;
-                if (otherhorse2.IsOther(c.x, c.y)) return false;
+                if (otherhorse.IsOther(c.x, c.y)) return false;
                 return true;
-            }   
+            }
 
             if (IsValid(candUp))
             {
@@ -119,25 +116,26 @@ public class Horse : GameObject
             return;
         }
 
+
         CheckConer(Mx, My);
 
         _direction.X = Mx;
         _direction.Y = My;
 
     }
-    public bool CheckConer(int nx,int ny)
+    public bool CheckConer(int nx, int ny)
     {
         HashSet<(int x, int y)> cornerCells = new HashSet<(int x, int y)>();
         int startX = Track.secondRight;
         int startY = Track.secondTop;
         int length = Track.Right - Track.secondRight;
-        for (int i = 0; i <=length;i++)
+        for (int i = 0; i <= length; i++)
         {
-            cornerCells.Add((startX +i , startY-i));
+            cornerCells.Add((startX + i, startY - i));
         }
-        for (int i = 0; i <=length;i++)
+        for (int i = 0; i <= length; i++)
         {
-            cornerCells.Add((startX +i+1 , startY-i+1));
+            cornerCells.Add((startX + i + 1, startY - i + 1));
         }
         if (cornerCells.Contains((nx, ny)))
         {
@@ -148,13 +146,13 @@ public class Horse : GameObject
         int RBX = Track.secondRight;
         int RBY = Track.secondBottom;
         int RBLength = Track.Right - Track.secondRight;
-        for(int i = 0;i<=length; i++)
+        for (int i = 0; i <= length; i++)
         {
-            rightbottomconercells.Add((RBX+i , RBY+i));
+            rightbottomconercells.Add((RBX + i, RBY + i));
         }
-        for(int i = 0;i<=length; i++)
+        for (int i = 0; i <= length; i++)
         {
-            rightbottomconercells.Add((RBX+i+1 , RBY+i+1));
+            rightbottomconercells.Add((RBX + i + 1, RBY + i + 1));
         }
         if (rightbottomconercells.Contains((nx, ny)))
         {
@@ -163,14 +161,14 @@ public class Horse : GameObject
         HashSet<(int x, int y)> leftbottomConerCells = new HashSet<(int x, int y)>();
         int LBX = Track.secondLeft;
         int LBY = Track.secondBottom;
-        int LBLength = Track.secondLeft-Track.Left;
-        for(int i =0;i<=LBLength;i++)
+        int LBLength = Track.secondLeft - Track.Left;
+        for (int i = 0; i <= LBLength; i++)
         {
-            leftbottomConerCells.Add((LBX-i , LBY+i));
+            leftbottomConerCells.Add((LBX - i, LBY + i));
         }
-        for(int i =0;i<=LBLength;i++)
+        for (int i = 0; i <= LBLength; i++)
         {
-            leftbottomConerCells.Add((LBX-i-1 , LBY+i+1));
+            leftbottomConerCells.Add((LBX - i - 1, LBY + i + 1));
         }
         if (leftbottomConerCells.Contains((nx, ny)))
         {
@@ -180,25 +178,25 @@ public class Horse : GameObject
         HashSet<(int x, int y)> LeftTopConerCells = new HashSet<(int x, int y)>();
         int LTX = Track.secondLeft;
         int LTY = Track.secondTop;
-        int LTLength = Track.secondLeft-Track.Left;
-        for(int i =0;i<=LTLength;i++)
+        int LTLength = Track.secondLeft - Track.Left;
+        for (int i = 0; i <= LTLength; i++)
         {
-            LeftTopConerCells.Add((LTX-i , LTY-i));
+            LeftTopConerCells.Add((LTX - i, LTY - i));
         }
-        for(int i =0;i<=LTLength;i++)
+        for (int i = 0; i <= LTLength; i++)
         {
-            LeftTopConerCells.Add((LTX-i-1 , LTY-i-1));
+            LeftTopConerCells.Add((LTX - i - 1, LTY - i - 1));
         }
-        if(LeftTopConerCells.Contains ((nx, ny)))
+        if (LeftTopConerCells.Contains((nx, ny)))
         {
             _nextDirection = (1, 0);
             return true;
         }
         return false;
     }
-    public bool IsOther(int x,int y)
+    public bool IsOther(int x, int y)
     {
-        HashSet<(int x,int y)> check = new HashSet<(int x, int y)> ();
+        HashSet<(int x, int y)> check = new HashSet<(int x, int y)>();
         check.Add((_direction.X, _direction.Y));
         return check.Contains((x, y));
 

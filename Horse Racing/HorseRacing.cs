@@ -6,8 +6,8 @@ using System.Text;
 public class HorseRacing : GameApp
 {
     private readonly SceneManager<Scene> _scenes = new SceneManager<Scene>();
-    public HorseRacing() : base(100, 30) { }
-    public HorseRacing(int width, int height) : base(100, 30)
+    public HorseRacing() : base(113, 30) { }
+    public HorseRacing(int width, int height) : base(113, 30)
     {
     }
 

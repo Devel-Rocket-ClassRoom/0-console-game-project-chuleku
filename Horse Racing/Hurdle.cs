@@ -8,7 +8,7 @@ public class Hurdle : GameObject
     private (int x,int y) _position;
     private readonly Random _random = new Random();
 
-    private const float K_MoveHurdle = 0.90f;
+    private const float K_MoveHurdle = 0.75f;
     private readonly LinkedList<(int x, int y)> _fall = new LinkedList<(int x, int y)>();
 
     private float _moveTimer;
@@ -55,11 +55,17 @@ public class Hurdle : GameObject
             _fall.AddLast((x, y));
         }
     }
+    public bool IsAt(int x, int y)
+    {
+        return _fall.Contains((x, y));
+    }
+
 
     public void Sqawn(int count) => Spawn(count);
 
     public override void Update(float deltaTime)
     {
+
         _moveTimer += deltaTime;
         if (_moveTimer < K_MoveHurdle) return;
         _moveTimer = 0f;
