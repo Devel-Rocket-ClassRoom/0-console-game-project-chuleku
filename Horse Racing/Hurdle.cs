@@ -8,7 +8,7 @@ public class Hurdle : GameObject
     private (int x,int y) _position;
     private readonly Random _random = new Random();
 
-    private const float K_MoveHurdle = 0.20f;
+    private const float K_MoveHurdle = 0.90f;
     private readonly LinkedList<(int x, int y)> _fall = new LinkedList<(int x, int y)>();
 
     private float _moveTimer;
@@ -30,7 +30,7 @@ public class Hurdle : GameObject
         {
             return true;
         }
-        if(x>=Track.secondLeft&&x<Track.secondRight+1&&y>=Track.secondTop-1&&y<=Track.secondBottom+1)
+        if(x>=Track.secondLeft-1&&x<Track.secondRight+2&&y>=Track.secondTop-1&&y<=Track.secondBottom+1)
         {
             return true;
         }
@@ -56,15 +56,60 @@ public class Hurdle : GameObject
         }
     }
 
-    // 기존 오타 메서드와의 호환성(기존 호출이 있다면 유지)
     public void Sqawn(int count) => Spawn(count);
+
     public override void Update(float deltaTime)
     {
         _moveTimer += deltaTime;
-        if(_moveTimer >K_MoveHurdle)
+        if (_moveTimer < K_MoveHurdle) return;
+        _moveTimer = 0f;
+
+        var occupied = new HashSet<(int x, int y)>(_fall);
+
+        var node = _fall.First;
+        while (node != null)
         {
-            
-            _moveTimer = 0f;
+            var current = node.Value;
+ 
+            occupied.Remove(current);
+
+        
+            var candidates = new List<(int x, int y)>
+            {
+                current,
+                (current.x - 1, current.y),
+                (current.x + 1, current.y),
+                (current.x, current.y - 1),
+                (current.x, current.y + 1)
+            };
+
+            for (int i = 0; i < candidates.Count; i++)
+            {
+                int j = _random.Next(i, candidates.Count);
+                var tmp = candidates[i];
+                candidates[i] = candidates[j];
+                candidates[j] = tmp;
+            }
+
+            (int x, int y) chosen = current;
+            foreach (var cand in candidates)
+            {
+               
+                if (cand.x < Track.Left || cand.x > Track.Right || cand.y < Track.Top || cand.y > Track.Bottom)
+                    continue;
+                
+                if (IsSqawn(cand.x, cand.y)) continue;
+          
+                if (occupied.Contains(cand)) continue;
+
+                chosen = cand;
+                break;
+            }
+
+            node.Value = chosen;
+            occupied.Add(chosen);
+
+            node = node.Next;
         }
     }
 }

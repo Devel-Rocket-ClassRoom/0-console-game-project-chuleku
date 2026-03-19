@@ -24,11 +24,11 @@ public class RacingScene : Scene
     public override void Load()
     {
         horse = new Horse(this,17,3);
-        horse1 = new Horse(this,17,5);
-        horse2 = new Horse(this,17,7);
+        horse1 = new Horse(this,13,5);
+        horse2 = new Horse(this,9,7);
         track = new Track(this);
         hurdle = new Hurdle(this);
-        hurdle.Spawn(50);
+        hurdle.Spawn(200);
         AddGameObject(horse);
         AddGameObject(horse1);
         AddGameObject(horse2);
