@@ -125,26 +125,26 @@ public class Horse : GameObject
         _direction.Y = My;
 
     }
-    public bool CheckConer(int nx,int ny)
+    public bool CheckConer(int nx, int ny)
     {
         HashSet<(int x, int y)> cornerCells = new HashSet<(int x, int y)>();
         int startX = Track.secondRight;
         int startY = Track.secondTop;
         int length = Track.Right - Track.secondRight;
-        for (int i = 0; i <=length;i++)
+        for (int i = 0; i <= length; i++)
         {
-            cornerCells.Add((startX +i , startY-i));
+            cornerCells.Add((startX + i, startY - i));
         }
-        for (int i = 0; i <=length;i++)
+        for (int i = 0; i <= length; i++)
         {
-            cornerCells.Add((startX +i+1 , startY-i+1));
+            cornerCells.Add((startX + i + 1, startY - i + 1));
         }
         if (cornerCells.Contains((nx, ny)))
         {
             _nextDirection = (0, 1);
             return true;
         }
-        else if(nx>startX+7&&ny<startY)
+        else if (nx > startX + 7 && ny < startY)
         {
             _nextDirection = (0, 1);
             return true;
@@ -153,45 +153,45 @@ public class Horse : GameObject
         int RBX = Track.secondRight;
         int RBY = Track.secondBottom;
         int RBLength = Track.Right - Track.secondRight;
-        for(int i = 0;i<=RBLength; i++)
+        for (int i = 0; i <= RBLength; i++)
         {
-            rightbottomconercells.Add((RBX+i , RBY+i));
+            rightbottomconercells.Add((RBX + i, RBY + i));
         }
-        for(int i = 0;i<=length; i++)
+        for (int i = 0; i <= length; i++)
         {
-            rightbottomconercells.Add((RBX+i+1 , RBY+i+1));
+            rightbottomconercells.Add((RBX + i + 1, RBY + i + 1));
         }
         if (rightbottomconercells.Contains((nx, ny)))
         {
             _nextDirection = (-1, 0); return true;
         }
-        else if(nx>RBX+5 &&ny>RBY+6)
+        else if (nx > RBX + 5 && ny > RBY + 6)
         {
             _nextDirection = (-1, 0); return true;
         }
         HashSet<(int x, int y)> leftbottomConerCells = new HashSet<(int x, int y)>();
         int LBX = Track.secondLeft;
         int LBY = Track.secondBottom;
-        int LBLength = Track.secondLeft-Track.Left;
-        for(int i =0;i<=LBLength;i++)
+        int LBLength = Track.secondLeft - Track.Left;
+        for (int i = 0; i <= LBLength; i++)
         {
-            leftbottomConerCells.Add((LBX-i , LBY+i));
+            leftbottomConerCells.Add((LBX - i, LBY + i));
         }
-        for(int i =0;i<=LBLength;i++)
+        for (int i = 0; i <= LBLength; i++)
         {
-            leftbottomConerCells.Add((LBX-i-1 , LBY+i+1));
+            leftbottomConerCells.Add((LBX - i - 1, LBY + i + 1));
         }
         if (leftbottomConerCells.Contains((nx, ny)))
         {
             _nextDirection = (0, -1);
             return true;
         }
-        else if(nx <LBX-5 && ny >LBY)
+        else if (nx < LBX - 5 && ny > LBY)
         {
             _nextDirection = (0, -1);
             return true;
         }
-        else if(nx <LBX -10 && ny>Track.secondTop)
+        else if (nx < LBX - 10 && ny > Track.secondTop)
         {
             _nextDirection = (0, -1);
             return true;
@@ -199,21 +199,21 @@ public class Horse : GameObject
         HashSet<(int x, int y)> LeftTopConerCells = new HashSet<(int x, int y)>();
         int LTX = Track.secondLeft;
         int LTY = Track.secondTop;
-        int LTLength = Track.secondLeft-Track.Left;
-        for(int i =0;i<=LTLength;i++)
+        int LTLength = Track.secondLeft - Track.Left;
+        for (int i = 0; i <= LTLength; i++)
         {
-            LeftTopConerCells.Add((LTX-i , LTY-i));
+            LeftTopConerCells.Add((LTX - i, LTY - i));
         }
-        for(int i =0;i<=LTLength;i++)
+        for (int i = 0; i <= LTLength; i++)
         {
-            LeftTopConerCells.Add((LTX-i-1 , LTY-i-1));
+            LeftTopConerCells.Add((LTX - i - 1, LTY - i - 1));
         }
-        if(LeftTopConerCells.Contains ((nx, ny)))
+        if (LeftTopConerCells.Contains((nx, ny)))
         {
             _nextDirection = (1, 0);
             return true;
         }
-        else if(nx <LTX-5&&ny<LTY)
+        else if (nx < LTX - 5 && ny < LTY)
         {
             _nextDirection = (1, 0);
             return true;

@@ -151,7 +151,7 @@ public class Horse1 : GameObject
         int RBX = Track.secondRight;
         int RBY = Track.secondBottom;
         int RBLength = Track.Right - Track.secondRight;
-        for (int i = 0; i <= length; i++)
+        for (int i = 0; i <= RBLength; i++)
         {
             rightbottomconercells.Add((RBX + i, RBY + i));
         }

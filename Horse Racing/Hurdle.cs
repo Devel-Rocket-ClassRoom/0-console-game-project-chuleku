@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Text;
 public class Hurdle : GameObject
 {
-    private (int x,int y) _position;
     private readonly Random _random = new Random();
 
     private const float K_MoveHurdle = 0.45f;
