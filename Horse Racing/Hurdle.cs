@@ -2,13 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
 public class Hurdle : GameObject
 {
     private (int x,int y) _position;
     private readonly Random _random = new Random();
 
-    private const float K_MoveHurdle = 0.75f;
+    private const float K_MoveHurdle = 0.50f;
     private readonly LinkedList<(int x, int y)> _fall = new LinkedList<(int x, int y)>();
 
     private float _moveTimer;

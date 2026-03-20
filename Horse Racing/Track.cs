@@ -22,8 +22,8 @@ public class Track : GameObject
 
     public override void Draw(ScreenBuffer buffer)
     {
-        buffer.DrawBox(Left - 1, Top - 1, Right - Left + 3, Bottom - Top + 3, ConsoleColor.White);
-        buffer.DrawBox(secondLeft-1,secondTop-1, secondRight-secondLeft+3,secondBottom-secondTop+3, ConsoleColor.White);
+        buffer.DrawBox(Left - 1, Top - 1, Right - Left + 3, Bottom - Top + 3, ConsoleColor.DarkGreen);
+        buffer.DrawBox(secondLeft-1,secondTop-1, secondRight-secondLeft+3,secondBottom-secondTop+3, ConsoleColor.DarkGreen);
         buffer.DrawVLine(secondLeft-1, Top, secondTop-3);
         buffer.DrawVLine(secondLeft, Top, secondTop-3);
         buffer.DrawHLine(Left, secondTop - 1, secondLeft - 2);

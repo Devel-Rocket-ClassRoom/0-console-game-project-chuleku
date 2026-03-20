@@ -7,8 +7,8 @@ public class HorseRacing : GameApp
 {
     private readonly SceneManager<Scene> _scenes = new SceneManager<Scene>();
     
-    public HorseRacing() : base(113, 30) { }
-    public HorseRacing(int width, int height) : base(113, 30)
+    public HorseRacing() : base(120, 30) { }
+    public HorseRacing(int width, int height) : base(120, 30)
     {
     }
 
@@ -19,7 +19,7 @@ public class HorseRacing : GameApp
 
     protected override void Initialize()
     {
-        ChangeToTile();
+        ChangeToTitle();
     }
 
     protected override void Update(float deltaTime)
@@ -31,7 +31,7 @@ public class HorseRacing : GameApp
         }
         _scenes.CurrentScene?.Update(deltaTime);
     }
-    private void ChangeToTile()
+    private void ChangeToTitle()
     {
         var title = new TitleScene();
         title.StartRequested += ChangeToRacing;
@@ -46,10 +46,10 @@ public class HorseRacing : GameApp
         var betting = new BettingScene(initialMoney);
         betting.StartRequested += () =>
         {
-            var racing = new RacingScene(betting.Money,betting.BettingMoney);
+            var racing = new RacingScene(betting.Money, betting.BettingMoney);
             racing.PlayAgainRequested += () =>
             {
-                var end = new EndTitleScene(betting.Money, betting.BettingMoney, racing.Money,racing.ranklist,racing.readCheckhorse);
+                var end = new EndTitleScene(betting.Money, betting.BettingMoney, racing.Money, racing.ranklist, racing.readCheckhorse);
                 if (racing.Money <= 0)
                 {
                     end.StartRequested += () => Quit();

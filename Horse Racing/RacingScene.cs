@@ -58,7 +58,7 @@ public class RacingScene : Scene
         {
             buffer.WriteText(100, 10, $"고른말 : 3번마", ConsoleColor.Gray);
         }
-        if(rankcount==3)
+        if(goalcount==3)
         {
             buffer.WriteText(100, 11, $"게임 종료.", ConsoleColor.Gray);
             buffer.WriteText(100, 12, $"Press Enter", ConsoleColor.Gray);

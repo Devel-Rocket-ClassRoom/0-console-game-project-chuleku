@@ -38,11 +38,12 @@ public class EndTitleScene : Scene
         {
             buffer.WriteTextCentered(18, $"3등ㅠㅠㅠ 배팅액을 전부 잃었습니다.  현재 보유액 {totalmoney}", ConsoleColor.White);
         }
-        if (totalmoney <= 0)
+        if (totalmoney == 0)
         {
             buffer.WriteTextCentered(20, "보유금이 0원입니다. Enter를 누르면 게임이 종료됩니다.", ConsoleColor.Red);
+            
         }
-        else
+        else if(totalmoney>0)
         {
             buffer.WriteTextCentered(20, "Enter 키를 눌러 다시 시작 하십시오.", ConsoleColor.White);
         }
