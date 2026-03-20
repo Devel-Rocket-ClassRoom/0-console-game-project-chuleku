@@ -142,6 +142,11 @@ public class Horse2 : GameObject
             _nextDirection = (0, 1);
             return true;
         }
+        else if (nx > startX + 7 && ny < startY)
+        {
+            _nextDirection = (0, 1);
+            return true;
+        }
         HashSet<(int x, int y)> rightbottomconercells = new HashSet<(int x, int y)>();
         int RBX = Track.secondRight;
         int RBY = Track.secondBottom;
@@ -158,6 +163,10 @@ public class Horse2 : GameObject
         {
             _nextDirection = (-1, 0); return true;
         }
+        else if (nx > RBX + 5 && ny > RBY + 6)
+        {
+            _nextDirection = (-1, 0); return true;
+        }
         HashSet<(int x, int y)> leftbottomConerCells = new HashSet<(int x, int y)>();
         int LBX = Track.secondLeft;
         int LBY = Track.secondBottom;
@@ -171,6 +180,16 @@ public class Horse2 : GameObject
             leftbottomConerCells.Add((LBX - i - 1, LBY + i + 1));
         }
         if (leftbottomConerCells.Contains((nx, ny)))
+        {
+            _nextDirection = (0, -1);
+            return true;
+        }
+        else if (nx < LBX - 5 && ny > LBY)
+        {
+            _nextDirection = (0, -1);
+            return true;
+        }
+        else if (nx < LBX - 10 && ny > Track.secondTop)
         {
             _nextDirection = (0, -1);
             return true;
@@ -192,6 +211,11 @@ public class Horse2 : GameObject
             _nextDirection = (1, 0);
             return true;
         }
+        else if (nx < LTX - 5 && ny < LTY)
+        {
+            _nextDirection = (1, 0);
+            return true;
+        }
         return false;
     }
     public bool IsOther(int x, int y)
@@ -206,11 +230,20 @@ public class Horse2 : GameObject
     {
         _IsMoving = true;
     }
+    public void StopMoving()
+    {
+        _IsMoving = false;
+    }
     public void SetDirection(int dx, int dy)
     {
         _nextDirection = (dx, dy);
     }
-
+    public void GoalLine(int x, int y)
+    {
+        _direction.X = x;
+        _direction.Y = y;
+        _nextDirection = (1, 0);
+    }
     public override void Update(float deltaTime)
     {
 

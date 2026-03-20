@@ -34,4 +34,14 @@ public class Track : GameObject
     {
         
     }
+    public bool Goal(int x, int y)
+    {
+        bool checkLine = (x >= Left && x <= secondLeft-1);
+        bool checktop = y >= secondTop-1&&y<=secondTop;
+        return checkLine && checktop;
+    }
+    public bool Goal((int x, int y) position)
+    {
+        return Goal(position.x, position.y);
+    }
 }
