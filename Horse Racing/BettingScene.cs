@@ -26,7 +26,7 @@ public class BettingScene : Scene
         buffer.WriteTextCentered(8, "배팅할 금액을 입력해주세요", ConsoleColor.White);
         buffer.WriteTextCentered(10, $"현재 금액: {Money}", ConsoleColor.Yellow);
         buffer.WriteTextCentered(12, $"배팅할 금액: {_inputBuffer}", ConsoleColor.Yellow);
-        buffer.WriteTextCentered(14, $"Enter 키 입력시 게임화면으로.", ConsoleColor.Yellow);
+        buffer.WriteTextCentered(14, $"Enter키를 입력하여 게임화면으로 이동.", ConsoleColor.Yellow);
         if (!string.IsNullOrEmpty(_message))
         {
             buffer.WriteTextCentered(18, _message, ConsoleColor.Red);

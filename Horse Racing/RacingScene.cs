@@ -38,14 +38,14 @@ public class RacingScene : Scene
     public override void Draw(ScreenBuffer buffer)
     {
         DrawGameObjects(buffer);
-        buffer.WriteText(100, 0, "Who's Winner?", ConsoleColor.Yellow);
+        buffer.WriteText(100, 0, "어떤 말이 이길까?", ConsoleColor.Yellow);
         buffer.WriteText(100, 2, "Press Number", ConsoleColor.Yellow);
         buffer.WriteText(100, 3, "(1, 2, 3)", ConsoleColor.Yellow);
         buffer.WriteText(100, 5, "(TrackLap)", ConsoleColor.Blue);
         buffer.WriteText(100, 6, $"1번마: {Count1}", ConsoleColor.Green);
         buffer.WriteText(100, 7, $"2번마: {Count2}", ConsoleColor.Yellow);
         buffer.WriteText(100, 8, $"3번마: {Count3}", ConsoleColor.Gray);
-        buffer.WriteText(100, 9, $"배팅금액: {amount}", ConsoleColor.Gray);
+        buffer.WriteText(100, 9, $"배팅금액: {amount}원", ConsoleColor.Gray);
         if(Checknum1==1)
         {
             buffer.WriteText(100, 10, $"고른말 : 1번마", ConsoleColor.Green);
@@ -76,7 +76,7 @@ public class RacingScene : Scene
         Checknum3 = 0;
         track = new Track(this);
         hurdle = new Hurdle(this);
-        hurdle.Spawn(250);
+        hurdle.Spawn(300);
         horse = new Horse(this,17,3);
         horse1 = new Horse1(this,13,4);
         horse2 = new Horse2(this,9,5);

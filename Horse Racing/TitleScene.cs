@@ -74,7 +74,7 @@ public class TitleScene : Scene
     {
         count++;
         buffer.WriteTextCentered(2, "=== 경마 게임 ===  ", ConsoleColor.White);
-        buffer.WriteTextCentered(4, "Enter키를 눌러 시작", ConsoleColor.White);
+        buffer.WriteTextCentered(4, "Enter키를 눌러 시작해주세요.", ConsoleColor.White);
         
         if (count % 9 <= 2)
         {

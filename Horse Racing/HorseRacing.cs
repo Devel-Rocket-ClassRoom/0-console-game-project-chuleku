@@ -37,10 +37,6 @@ public class HorseRacing : GameApp
         title.StartRequested += ChangeToRacing;
         _scenes.ChangeScene(title);
     }
-    private void ChangeToRacing()
-    {
-        ChangeToRacing(100000);
-    }
     private void ChangeToRacing(int initialMoney)
     {
         var betting = new BettingScene(initialMoney);
